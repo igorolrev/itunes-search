@@ -22,6 +22,7 @@ class ItunesSearchTests: XCTestCase {
         
         let result = ItunesSearch.SearchSync(searchTerm).results;
         let artistName:String = result.first!.get(fromItem: ISItemKey.ARTIST_NAME)!;
+        
         XCTAssertEqual(artistName, "Metallica", "Search OK");
     }
     
@@ -40,8 +41,6 @@ class ItunesSearchTests: XCTestCase {
     {
         let searchTerm = "Metallica Sad But True";
         let result = ItunesSearch.SearchSync(searchTerm).results;
-        
-        result.first?.getCoverURL(ISCoverSize.REGULAR, dpi: ISCoverImageDPI.MEDIUM);
         
         XCTAssert(validateURL(result.first!.getCoverURL(size: 200, dpi: 100)!, size: 200, dpi: 100), "correct cover url");
         XCTAssert(validateURL(result.first!.getCoverURL(size: 400, dpi: 300)!, size: 400, dpi: 300), "correct cover url");
