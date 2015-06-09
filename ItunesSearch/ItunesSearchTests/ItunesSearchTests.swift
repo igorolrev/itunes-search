@@ -31,9 +31,9 @@ class ItunesSearchTests: XCTestCase {
         let searchTerm = "metallica sad but true";
         
         let result = ItunesSearch.SearchSync(searchTerm).results;
-        let artistName:String = result.first!.get(fromItem: ISItemKey.TRACK_NAME)!;
+        let trackName:String = result.first!.get(fromItem: ISItemKey.TRACK_NAME)!;
         
-        XCTAssertEqual(artistName, "Sad But True", "Search OK");
+        XCTAssertEqual(trackName, "Sad But True", "Search OK");
 
     }
     
