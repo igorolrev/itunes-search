@@ -4,3 +4,7 @@ framework module ItunesSearch {
   export *
   module * { export * }
 }
+
+module ItunesSearch.Swift {
+    header "ItunesSearch-Swift.h"
+}
