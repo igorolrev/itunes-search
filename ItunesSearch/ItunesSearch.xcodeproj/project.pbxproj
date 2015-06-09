@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		1334EB0B1B2682730034B382 /* ItunesSearchUniversalBuilder */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 1334EB0E1B2682730034B382 /* Build configuration list for PBXAggregateTarget "ItunesSearchUniversalBuilder" */;
+			buildPhases = (
+				1334EB0F1B2682770034B382 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = ItunesSearchUniversalBuilder;
+			productName = ItunesSearchUniversalBuilder;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1383CF671B267B420070DE3B /* ItunesSearch.h in Headers */ = {isa = PBXBuildFile; fileRef = 1383CF661B267B420070DE3B /* ItunesSearch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1383CF6D1B267B420070DE3B /* ItunesSearch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1383CF611B267B420070DE3B /* ItunesSearch.framework */; };
@@ -161,6 +175,9 @@
 				LastUpgradeCheck = 0630;
 				ORGANIZATIONNAME = "Victor C Tavernari";
 				TargetAttributes = {
+					1334EB0B1B2682730034B382 = {
+						CreatedOnToolsVersion = 6.3.2;
+					};
 					1383CF601B267B420070DE3B = {
 						CreatedOnToolsVersion = 6.3.2;
 					};
@@ -183,6 +200,7 @@
 			targets = (
 				1383CF601B267B420070DE3B /* ItunesSearch */,
 				1383CF6B1B267B420070DE3B /* ItunesSearchTests */,
+				1334EB0B1B2682730034B382 /* ItunesSearchUniversalBuilder */,
 			);
 		};
 /* End PBXProject section */
@@ -203,6 +221,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1334EB0F1B2682770034B382 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#!/bin/sh\n\nUNIVERSAL_OUTPUTFOLDER=${BUILD_DIR}/${CONFIGURATION}-universal\n\n# make sure the output directory exists\nmkdir -p \"${UNIVERSAL_OUTPUTFOLDER}\"\n\n# Step 1. Build Device and Simulator versions\nxcodebuild -target \"${PROJECT_NAME}\" ONLY_ACTIVE_ARCH=NO -configuration ${CONFIGURATION} -sdk iphoneos  BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\nxcodebuild -target \"${PROJECT_NAME}\" -configuration ${CONFIGURATION} -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO BUILD_DIR=\"${BUILD_DIR}\" BUILD_ROOT=\"${BUILD_ROOT}\" clean build\n\n# Step 2. Copy the framework structure (from iphoneos build) to the universal folder\ncp -R \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework\" \"${UNIVERSAL_OUTPUTFOLDER}/\"\n\n# Step 3. Copy Swift modules from iphonesimulator build (if it exists) to the copied framework directory\nSIMULATOR_SWIFT_MODULES_DIR=\"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule/.\"\nif [ -d \"${SIMULATOR_SWIFT_MODULES_DIR}\" ]; then\ncp -R \"${SIMULATOR_SWIFT_MODULES_DIR}\" \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/Modules/${PROJECT_NAME}.swiftmodule\"\nfi\n\n# Step 4. Create universal binary file using lipo and place the combined executable in the copied framework directory\nlipo -create -output \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphonesimulator/${PROJECT_NAME}.framework/${PROJECT_NAME}\" \"${BUILD_DIR}/${CONFIGURATION}-iphoneos/${PROJECT_NAME}.framework/${PROJECT_NAME}\"\n\n# Step 5. Convenience step to copy the framework to the project's directory\ncp -R \"${UNIVERSAL_OUTPUTFOLDER}/${PROJECT_NAME}.framework\" \"${PROJECT_DIR}\"\n\n# Step 6. Convenience step to open the project's directory in Finder\nopen \"${PROJECT_DIR}\"";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1383CF5C1B267B420070DE3B /* Sources */ = {
@@ -231,6 +265,20 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		1334EB0C1B2682730034B382 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1334EB0D1B2682730034B382 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		1383CF751B267B430070DE3B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -383,6 +431,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1334EB0E1B2682730034B382 /* Build configuration list for PBXAggregateTarget "ItunesSearchUniversalBuilder" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1334EB0C1B2682730034B382 /* Debug */,
+				1334EB0D1B2682730034B382 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		1383CF5B1B267B420070DE3B /* Build configuration list for PBXProject "ItunesSearch" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -399,6 +455,7 @@
 				1383CF791B267B430070DE3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1383CF7A1B267B430070DE3B /* Build configuration list for PBXNativeTarget "ItunesSearchTests" */ = {
 			isa = XCConfigurationList;
@@ -407,6 +464,7 @@
 				1383CF7C1B267B430070DE3B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
