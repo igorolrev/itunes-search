@@ -12,6 +12,8 @@ Download ItunesSearch.framework and add to your project.
 
 After click in Project Blue Icon > in General search for Embedded Binaries when find expand and click + and Add too ItunesSearch.framework (this is step is important for your build).
 
+![Config Example](screenshot/how_embed.png "How Embeded")
+
 # Example Sync Request
 
 ```
