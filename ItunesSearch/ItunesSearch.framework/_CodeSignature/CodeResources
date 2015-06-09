@@ -4,6 +4,10 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>Headers/ItunesSearch-Swift.h</key>
+		<data>
+		JsKtiw/cyhHWQIv/DaTPIDboCIs=
+		</data>
 		<key>Headers/ItunesSearch.h</key>
 		<data>
 		kZ0WsjZH5n1kIz8aGXWKznEu5zo=
@@ -12,20 +16,56 @@
 		<data>
 		1IGGBvvMzF1R6gsM4hAaWLc7Txc=
 		</data>
+		<key>Modules/ItunesSearch.swiftmodule/arm.swiftdoc</key>
+		<data>
+		bADzyhLg0jcEBanUrBP2VCOesLw=
+		</data>
+		<key>Modules/ItunesSearch.swiftmodule/arm.swiftmodule</key>
+		<data>
+		MPZ/JpyBJvU20NAUrYx18L1Xjb8=
+		</data>
+		<key>Modules/ItunesSearch.swiftmodule/arm64.swiftdoc</key>
+		<data>
+		mlZg42OoPelsxipSMvL8CBX7PsA=
+		</data>
+		<key>Modules/ItunesSearch.swiftmodule/arm64.swiftmodule</key>
+		<data>
+		p6cdL6RrzinyOE5yxekqQEJzTmU=
+		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		uciy2cd2IQslpXbd4RCkiAk8QM4=
+		BLCTjjzL66ziJOMnI4Vs9xe2gAI=
 		</data>
 	</dict>
 	<key>files2</key>
 	<dict>
+		<key>Headers/ItunesSearch-Swift.h</key>
+		<data>
+		JsKtiw/cyhHWQIv/DaTPIDboCIs=
+		</data>
 		<key>Headers/ItunesSearch.h</key>
 		<data>
 		kZ0WsjZH5n1kIz8aGXWKznEu5zo=
 		</data>
+		<key>Modules/ItunesSearch.swiftmodule/arm.swiftdoc</key>
+		<data>
+		bADzyhLg0jcEBanUrBP2VCOesLw=
+		</data>
+		<key>Modules/ItunesSearch.swiftmodule/arm.swiftmodule</key>
+		<data>
+		MPZ/JpyBJvU20NAUrYx18L1Xjb8=
+		</data>
+		<key>Modules/ItunesSearch.swiftmodule/arm64.swiftdoc</key>
+		<data>
+		mlZg42OoPelsxipSMvL8CBX7PsA=
+		</data>
+		<key>Modules/ItunesSearch.swiftmodule/arm64.swiftmodule</key>
+		<data>
+		p6cdL6RrzinyOE5yxekqQEJzTmU=
+		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
-		uciy2cd2IQslpXbd4RCkiAk8QM4=
+		BLCTjjzL66ziJOMnI4Vs9xe2gAI=
 		</data>
 	</dict>
 	<key>rules</key>

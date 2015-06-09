@@ -11,26 +11,45 @@ import XCTest
 
 class ItunesSearchTests: XCTestCase {
     
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    func testCallSyncSearch() {
+        XCTAssert(ItunesSearch.SearchSync("metallica sad but true").hasResult, "Has result");
+        XCTAssertFalse(ItunesSearch.SearchSync("").hasResult, "Has no result");
     }
     
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
+    func testGetArtistName()
+    {
+        let searchTerm = "metallica sad but true";
+        
+        let result = ItunesSearch.SearchSync(searchTerm).result;
+        let artistName:String = result.first!.get(fromItem: ISItemKey.ARTIST_NAME)!;
+        
+        XCTAssertEqual(artistName, "Metallica", "Search OK");
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
+    func testGetTrackName()
+    {
+        let searchTerm = "metallica sad but true";
+        
+        let result = ItunesSearch.SearchSync(searchTerm).result;
+        let artistName:String = result.first!.get(fromItem: ISItemKey.TRACK_NAME)!;
+        
+        XCTAssertEqual(artistName, "Sad But True", "Search OK");
+
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+    func testGetCoverURL()
+    {
+        let searchTerm = "Metallica Sad But True";
+        let result = ItunesSearch.SearchSync(searchTerm).result;
+        
+        XCTAssert(validateURL(result.first!.getCoverURL(size: 200, dpi: 100)!, size: 200, dpi: 100), "correct cover url");
+        XCTAssert(validateURL(result.first!.getCoverURL(size: 400, dpi: 300)!, size: 400, dpi: 300), "correct cover url");
+        XCTAssertFalse(validateURL(result.first!.getCoverURL(size: 400, dpi: 300)!, size: 100, dpi: 200), "incorrect url");
+    }
+    
+    private func validateURL(url:String, size:Int, dpi:Int)->Bool
+    {
+        return url.lowercaseString.rangeOfString("\(size)x\(size)-\(dpi)") != nil
     }
     
 }
