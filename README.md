@@ -21,14 +21,14 @@ After click in Project Blue Icon > in General search for Embedded Binaries when 
 
       init()
       {
-         let result = ItunesSearch.SearchSync("metallica").result;
+         let results = ItunesSearch.SearchSync("metallica").results;
          
-         if let artistName:String = result.first?.get(fromItem: ISItemKey.ARTIST_NAME)
+         if let artistName:String = results.first?.get(fromItem: ISItemKey.ARTIST_NAME)
          {
             println(artistName); //Metallica;
          }
          
-         if let coverURL:String = result.first?.getCoverURL(ISCoverSize.REGULAR, dpi: ISCoverImageDPI.MEDIUM);
+         if let coverURL:String = results.first?.getCoverURL(ISCoverSize.REGULAR, dpi: ISCoverImageDPI.MEDIUM);
          {
             println(coverURL); //Dynamic URL from cover;
             
