@@ -39,3 +39,6 @@ After click in Project Blue Icon > in General search for Embedded Binaries when 
 
 ```
 
+# Future
+* Find by Kind, like App, or Music, or Video
+* Search Async with delegate callback
